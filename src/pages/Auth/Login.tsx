@@ -198,13 +198,6 @@ export default function Login() {
         {/* Enhanced Demo Account Section */}
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 shadow-lg">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <Sparkles className="h-5 w-5 text-blue-600" />
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-blue-900">Try the Demo</h3>
-              <p className="text-sm text-blue-700">Experience CreatorFlow with realistic sample data</p>
-            </div>
           </div>
           
           <div className="space-y-4">
@@ -225,9 +218,6 @@ export default function Login() {
                 </>
               ) : (
                 <>
-                  <Play className="h-4 w-4" />
-                  Launch Demo Experience
-                </>
               )}
             </button>
             
