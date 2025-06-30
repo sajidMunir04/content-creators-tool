@@ -219,8 +219,7 @@ export default function Login() {
               ) : (
                 <>
               )}
-            </button>
-            
+
             <div className="p-3 bg-blue-100 rounded-lg">
               <div className="text-xs text-blue-800 font-mono space-y-1">
                 <div className="flex justify-between">
