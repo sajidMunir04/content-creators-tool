@@ -18,7 +18,7 @@ import Settings from './pages/Settings';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import ForgotPassword from './pages/Auth/ForgotPassword';
-import logo from 'src/logo.png'; 
+import logo from './logo.png'; 
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   return (
