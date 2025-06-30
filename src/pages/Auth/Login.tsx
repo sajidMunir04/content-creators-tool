@@ -203,19 +203,20 @@ export default function Login() {
               Perfect for testing the platform before creating your own account.
             </p>
           </div>
-            <div className="p-3 bg-blue-100 rounded-lg">
-              <div className="text-xs text-blue-800 font-mono space-y-1">
-                <div className="flex justify-between">
-                  <span>Email:</span>
-                  <span className="font-semibold">demo@creatorflow.com</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Password:</span>
-                  <span className="font-semibold">demo123456</span>
-                </div>
+          <div className="p-3 bg-blue-100 rounded-lg">
+            <div className="text-xs text-blue-800 font-mono space-y-1">
+              <div className="flex justify-between">
+                <span>Email:</span>
+                <span className="font-semibold">demo@creatorflow.com</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Password:</span>
+                <span className="font-semibold">demo123456</span>
               </div>
             </div>
+          </div>
         </div>
       </div>
+    </div>
   );
 }
