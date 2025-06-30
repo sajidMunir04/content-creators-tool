@@ -14,6 +14,7 @@ import TimeTracking from './pages/TimeTracking';
 import Analytics from './pages/Analytics';
 import Team from './pages/Team';
 import Goals from './pages/Goals';
+import Settings from './pages/Settings';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import ForgotPassword from './pages/Auth/ForgotPassword';
@@ -126,10 +127,7 @@ function App() {
           <Route path="/settings" element={
             <ProtectedRoute>
               <AppLayout>
-                <div className="text-center py-12">
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-4">Settings</h2>
-                  <p className="text-gray-600">Coming Soon</p>
-                </div>
+                <Settings />
               </AppLayout>
             </ProtectedRoute>
           } />
