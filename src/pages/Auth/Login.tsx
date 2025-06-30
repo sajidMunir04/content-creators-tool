@@ -211,7 +211,7 @@ export default function Login() {
               </div>
               <div className="flex justify-between">
                 <span>Password:</span>
-                <span className="font-semibold">demo123456</span>
+                <span className="font-semibold">Demo123456</span>
               </div>
             </div>
           </div>
