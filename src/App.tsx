@@ -33,15 +33,15 @@ function AppLayout({ children }: { children: React.ReactNode }) {
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+      <AuthProvider>
         <Routes>
-          {/* Auth Routes */}
+          {/* Public Auth Routes */}
           <Route path="/auth/login" element={<Login />} />
           <Route path="/auth/register" element={<Register />} />
           <Route path="/auth/forgot-password" element={<ForgotPassword />} />
           
-          {/* Protected Routes */}
+          {/* Protected App Routes */}
           <Route path="/" element={
             <ProtectedRoute>
               <AppLayout>
@@ -117,7 +117,10 @@ function App() {
           <Route path="/goals" element={
             <ProtectedRoute>
               <AppLayout>
-                <div>Goals (Coming Soon)</div>
+                <div className="text-center py-12">
+                  <h2 className="text-2xl font-semibold text-gray-900 mb-4">Goals</h2>
+                  <p className="text-gray-600">Coming Soon</p>
+                </div>
               </AppLayout>
             </ProtectedRoute>
           } />
@@ -125,16 +128,19 @@ function App() {
           <Route path="/settings" element={
             <ProtectedRoute>
               <AppLayout>
-                <div>Settings (Coming Soon)</div>
+                <div className="text-center py-12">
+                  <h2 className="text-2xl font-semibold text-gray-900 mb-4">Settings</h2>
+                  <p className="text-gray-600">Coming Soon</p>
+                </div>
               </AppLayout>
             </ProtectedRoute>
           } />
 
-          {/* Redirect any unknown routes to home */}
+          {/* Catch all route - redirect to home */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

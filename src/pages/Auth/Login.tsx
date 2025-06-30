@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock, Target, AlertCircle, Sparkles, Play, CheckCircle, Clock, Users, BarChart3 } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, Target, AlertCircle, Sparkles, Play, CheckCircle, BarChart3 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function Login() {
-  const { signIn, loading } = useAuth();
+  const { signIn, loading, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   
@@ -18,6 +18,13 @@ export default function Login() {
 
   const from = location.state?.from?.pathname || '/';
 
+  // Redirect if already logged in
+  useEffect(() => {
+    if (user && !loading) {
+      navigate(from, { replace: true });
+    }
+  }, [user, loading, navigate, from]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -29,7 +36,7 @@ export default function Login() {
       if (error) {
         setError(error.message);
       } else {
-        navigate(from, { replace: true });
+        // Navigation will be handled by the useEffect above
       }
     } catch (err) {
       setError('An unexpected error occurred. Please try again.');
@@ -56,15 +63,19 @@ export default function Login() {
       
       if (error) {
         setError(`Demo login failed: ${error.message}`);
-      } else {
-        navigate(from, { replace: true });
       }
+      // Navigation will be handled by the useEffect above
     } catch (err) {
       setError('Demo login failed. Please try again or use manual credentials.');
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  // Don't render if user is already logged in
+  if (user && !loading) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 flex items-center justify-center p-4">
@@ -250,7 +261,7 @@ export default function Login() {
                 <span>5 Sample Projects</span>
               </div>
               <div className="flex items-center gap-1">
-                <Clock className="w-3 h-3 text-green-500" />
+                <Target className="w-3 h-3 text-green-500" />
                 <span>14 Tasks</span>
               </div>
               <div className="flex items-center gap-1">

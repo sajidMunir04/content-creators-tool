@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, User, Target, AlertCircle, CheckCircle } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function Register() {
-  const { signUp, loading } = useAuth();
+  const { signUp, loading, user } = useAuth();
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
@@ -18,6 +18,13 @@ export default function Register() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (user && !loading) {
+      navigate('/', { replace: true });
+    }
+  }, [user, loading, navigate]);
 
   const validatePassword = (password: string) => {
     const minLength = password.length >= 8;
@@ -60,15 +67,15 @@ export default function Register() {
     setIsSubmitting(true);
 
     try {
-      const { error } = await signUp(formData.email, formData.password, formData.fullName);
+      const { error, needsVerification } = await signUp(formData.email, formData.password, formData.fullName);
       
       if (error) {
         setError(error.message);
+      } else if (needsVerification) {
+        setSuccess('Account created successfully! Please check your email to verify your account before signing in.');
       } else {
-        setSuccess('Account created successfully! Please check your email to verify your account.');
-        setTimeout(() => {
-          navigate('/auth/login');
-        }, 3000);
+        setSuccess('Account created successfully! You are now logged in.');
+        // Navigation will be handled by the useEffect above
       }
     } catch (err) {
       setError('An unexpected error occurred. Please try again.');
@@ -86,6 +93,11 @@ export default function Register() {
     if (error) setError(null);
     if (success) setSuccess(null);
   };
+
+  // Don't render if user is already logged in
+  if (user && !loading) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 flex items-center justify-center p-4">
