@@ -76,6 +76,19 @@ export default function Header({ onCreateProject }: HeaderProps) {
 
           <div className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200" />
 
+          {/* Logo */}
+          <div className="flex items-center">
+            <img 
+              src="/logo.png" 
+              alt="CreatorFlow Logo" 
+              className="h-8 w-auto sm:h-10 md:h-12 lg:h-14 xl:h-16 object-contain transition-all duration-200 hover:scale-105"
+              onError={(e) => {
+                // Fallback if logo doesn't load
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          </div>
+
           <div className="relative">
             <button
               onClick={() => setShowUserMenu(!showUserMenu)}
