@@ -22,15 +22,13 @@ import ForgotPassword from './pages/Auth/ForgotPassword';
 function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-gray-50">
-          {/* Logo - Positioned at the far right with increased scale */}
-<div className="flex items-center ml-4 mt-10 absolute">
+{/* Logo - Fixed position in top right corner with high z-index */}
+<div className="fixed top-0 right-0 z-[1000] p-4">
   <img 
     src="/logo.png" 
     alt="CreatorFlow Logo" 
-    className="h-14 w-auto sm:h-16 md:h-20 lg:h-24 xl:h-28 object-contain transition-all duration-200 hover:scale-110 z-100"
-    style={{ marginRight: '-1rem' }}
+    className="h-14 w-auto sm:h-16 md:h-20 lg:h-24 xl:h-28 object-contain transition-all duration-200 hover:scale-110"
     onError={(e) => {
-      // Fallback if logo doesn't load
       e.currentTarget.style.display = 'none';
     }}
   />
