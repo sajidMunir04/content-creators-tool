@@ -134,7 +134,7 @@ export default function Header({ onCreateProject }: HeaderProps) {
             <img 
               src="/logo.png" 
               alt="CreatorFlow Logo" 
-              className="h-12 w-auto sm:h-16 md:h-20 lg:h-24 xl:h-28 object-contain transition-all duration-200 hover:scale-110"
+              className="h-16 w-auto sm:h-16 md:h-20 lg:h-24 xl:h-28 object-contain transition-all duration-200 hover:scale-110"
               style={{ marginRight: '-1rem' }}
               onError={(e) => {
                 // Fallback if logo doesn't load
