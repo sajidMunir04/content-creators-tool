@@ -13,12 +13,14 @@ import {
   Circle,
   MoreVertical,
   Target,
-  X
+  X,
+  Sparkles
 } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import { formatDate, getPriorityColor, getStatusColor, getCategoryColor, isOverdue } from '../utils/helpers';
 import TaskCard from '../components/Tasks/TaskCard';
 import ProjectTimeline from '../components/Projects/ProjectTimeline';
+import AIScriptGenerator from '../components/Projects/AIScriptGenerator';
 import { Task } from '../types';
 
 export default function ProjectDetail() {
@@ -27,6 +29,7 @@ export default function ProjectDetail() {
   const { projects, tasks, milestones, updateTask, addTask } = useStore();
   const [activeTab, setActiveTab] = useState<'overview' | 'tasks' | 'milestones' | 'timeline'>('overview');
   const [showCreateTask, setShowCreateTask] = useState(false);
+  const [showAIGenerator, setShowAIGenerator] = useState(false);
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
@@ -165,6 +168,13 @@ export default function ProjectDetail() {
           <p className="text-gray-600">{project.description}</p>
         </div>
         <div className="flex items-center gap-2">
+          <button 
+            onClick={() => setShowAIGenerator(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-200 font-medium"
+          >
+            <Sparkles className="h-4 w-4" />
+            AI Script Generator
+          </button>
           <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200">
             <Edit3 className="h-5 w-5 text-gray-600" />
           </button>
@@ -502,6 +512,14 @@ export default function ProjectDetail() {
           />
         )}
       </div>
+
+      {/* AI Script Generator Modal */}
+      <AIScriptGenerator
+        project={project}
+        tasks={projectTasks}
+        isOpen={showAIGenerator}
+        onClose={() => setShowAIGenerator(false)}
+      />
 
       {/* Create Task Modal */}
       {showCreateTask && (
