@@ -197,15 +197,12 @@ export default function Login() {
 
         {/* Enhanced Demo Account Section */}
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 shadow-lg">
-          <div className="flex items-center gap-3 mb-4">
-          </div>
-          
           <div className="space-y-4">
             <p className="text-sm text-blue-700">
               Explore all features with pre-loaded projects, tasks, milestones, and time tracking data. 
               Perfect for testing the platform before creating your own account.
             </p>
-
+          </div>
             <div className="p-3 bg-blue-100 rounded-lg">
               <div className="text-xs text-blue-800 font-mono space-y-1">
                 <div className="flex justify-between">
