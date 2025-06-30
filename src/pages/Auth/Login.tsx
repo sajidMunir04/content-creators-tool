@@ -37,9 +37,8 @@ export default function Login() {
       
       if (error) {
         setError(error.message);
-      } else {
-        // Navigation will be handled by the useEffect above
       }
+      // Navigation will be handled by the useEffect above
     } catch (err) {
       setError('An unexpected error occurred. Please try again.');
     } finally {
@@ -66,76 +65,40 @@ export default function Login() {
             id: 'proj_001',
             user_id: userId,
             title: 'YouTube Series: Web Development Fundamentals',
-            description: 'A comprehensive 12-part series covering HTML, CSS, JavaScript, and modern web development practices. Target audience: beginners to intermediate developers.',
+            description: 'A comprehensive 12-part series covering HTML, CSS, JavaScript, and modern web development practices.',
             category: 'YouTube',
             deadline: '2025-03-15',
             priority: 'High',
             status: 'In Progress',
             color: '#EF4444',
-            tags: ['tutorial', 'beginner', 'web-dev', 'javascript', 'html', 'css'],
-            progress: 45,
-            created_at: '2025-01-01T00:00:00Z',
-            updated_at: '2025-01-20T10:30:00Z'
+            tags: ['tutorial', 'beginner', 'web-dev'],
+            progress: 45
           },
           {
             id: 'proj_002',
             user_id: userId,
             title: 'Blog Series: React Best Practices 2025',
-            description: 'In-depth blog series covering React 18+ features, performance optimization, testing strategies, and modern development patterns.',
+            description: 'In-depth blog series covering React 18+ features and modern development patterns.',
             category: 'Blog',
             deadline: '2025-02-28',
             priority: 'High',
             status: 'Review',
             color: '#3B82F6',
-            tags: ['react', 'javascript', 'best-practices', 'performance', 'testing'],
-            progress: 75,
-            created_at: '2025-01-05T00:00:00Z',
-            updated_at: '2025-01-19T15:45:00Z'
+            tags: ['react', 'javascript', 'best-practices'],
+            progress: 75
           },
           {
             id: 'proj_003',
             user_id: userId,
             title: 'Podcast: Tech Career Conversations',
-            description: 'Monthly podcast featuring interviews with senior developers, CTOs, and tech entrepreneurs about career growth and industry trends.',
+            description: 'Monthly podcast featuring interviews with senior developers and tech entrepreneurs.',
             category: 'Podcast',
             deadline: '2025-04-01',
             priority: 'Medium',
             status: 'Planning',
             color: '#10B981',
-            tags: ['podcast', 'career', 'interviews', 'tech-industry'],
-            progress: 20,
-            created_at: '2025-01-10T00:00:00Z',
-            updated_at: '2025-01-18T09:20:00Z'
-          },
-          {
-            id: 'proj_004',
-            user_id: userId,
-            title: 'Social Media: Daily Dev Tips',
-            description: 'Daily short-form content for Twitter, LinkedIn, and Instagram sharing quick development tips, code snippets, and industry insights.',
-            category: 'Social Media',
-            deadline: '2025-02-15',
-            priority: 'Medium',
-            status: 'In Progress',
-            color: '#8B5CF6',
-            tags: ['social-media', 'tips', 'daily-content', 'engagement'],
-            progress: 60,
-            created_at: '2025-01-12T00:00:00Z',
-            updated_at: '2025-01-20T14:15:00Z'
-          },
-          {
-            id: 'proj_005',
-            user_id: userId,
-            title: 'Course: Advanced TypeScript Patterns',
-            description: 'Comprehensive online course covering advanced TypeScript concepts, design patterns, and real-world applications.',
-            category: 'Other',
-            deadline: '2025-05-01',
-            priority: 'Critical',
-            status: 'Planning',
-            color: '#F59E0B',
-            tags: ['typescript', 'course', 'advanced', 'patterns', 'education'],
-            progress: 15,
-            created_at: '2025-01-15T00:00:00Z',
-            updated_at: '2025-01-20T11:00:00Z'
+            tags: ['podcast', 'career', 'interviews'],
+            progress: 20
           }
         ]);
 
@@ -150,75 +113,36 @@ export default function Login() {
             user_id: userId,
             project_id: 'proj_001',
             title: 'Write script for Episode 1: HTML Basics',
-            description: 'Create detailed script covering HTML5 semantic elements, accessibility best practices, and modern HTML structure.',
+            description: 'Create detailed script covering HTML5 semantic elements and accessibility.',
             priority: 'High',
             status: 'Done',
-            assignee: 'John Creator',
             deadline: '2025-01-25',
-            tags: ['script', 'html', 'episode-1'],
-            time_spent: 180,
-            created_at: '2025-01-01T00:00:00Z',
-            updated_at: '2025-01-15T16:30:00Z'
+            tags: ['script', 'html'],
+            time_spent: 180
           },
           {
             id: 'task_002',
             user_id: userId,
             project_id: 'proj_001',
             title: 'Record Episode 1: HTML Basics',
-            description: 'Film the HTML basics tutorial with screen recording, webcam, and high-quality audio.',
+            description: 'Film the HTML basics tutorial with screen recording and webcam.',
             priority: 'High',
             status: 'In Progress',
-            assignee: 'John Creator',
             deadline: '2025-01-28',
-            tags: ['recording', 'video', 'episode-1'],
-            time_spent: 45,
-            created_at: '2025-01-16T00:00:00Z',
-            updated_at: '2025-01-20T10:15:00Z'
+            tags: ['recording', 'video'],
+            time_spent: 45
           },
           {
             id: 'task_003',
             user_id: userId,
-            project_id: 'proj_001',
-            title: 'Edit Episode 1',
-            description: 'Video editing, color correction, audio enhancement, and adding graphics/animations.',
-            priority: 'Medium',
-            status: 'To Do',
-            assignee: 'Sarah Editor',
-            deadline: '2025-02-02',
-            tags: ['editing', 'post-production', 'episode-1'],
-            time_spent: 0,
-            created_at: '2025-01-16T00:00:00Z',
-            updated_at: '2025-01-16T00:00:00Z'
-          },
-          {
-            id: 'task_004',
-            user_id: userId,
             project_id: 'proj_002',
-            title: 'Write React Performance Optimization Article',
-            description: 'Comprehensive guide covering memo, useMemo, useCallback, and profiling techniques.',
+            title: 'Write React Performance Article',
+            description: 'Comprehensive guide covering memo, useMemo, and useCallback.',
             priority: 'High',
             status: 'Review',
-            assignee: 'Mike Writer',
             deadline: '2025-01-25',
-            tags: ['writing', 'performance', 'optimization'],
-            time_spent: 320,
-            created_at: '2025-01-12T00:00:00Z',
-            updated_at: '2025-01-19T15:30:00Z'
-          },
-          {
-            id: 'task_005',
-            user_id: userId,
-            project_id: 'proj_003',
-            title: 'Research and contact potential guests',
-            description: 'Identify and reach out to 10 senior developers and tech leaders for interviews.',
-            priority: 'High',
-            status: 'In Progress',
-            assignee: 'John Creator',
-            deadline: '2025-02-15',
-            tags: ['research', 'outreach', 'guests'],
-            time_spent: 120,
-            created_at: '2025-01-10T00:00:00Z',
-            updated_at: '2025-01-18T16:00:00Z'
+            tags: ['writing', 'performance'],
+            time_spent: 320
           }
         ]);
 
@@ -237,9 +161,7 @@ export default function Login() {
             deadline: '2025-02-15',
             status: 'In Progress',
             progress: 60,
-            order: 1,
-            created_at: '2025-01-01T00:00:00Z',
-            updated_at: '2025-01-20T10:30:00Z'
+            order: 1
           },
           {
             id: 'milestone_002',
@@ -250,67 +172,11 @@ export default function Login() {
             deadline: '2025-01-25',
             status: 'Complete',
             progress: 100,
-            order: 1,
-            created_at: '2025-01-05T00:00:00Z',
-            updated_at: '2025-01-18T11:45:00Z'
-          },
-          {
-            id: 'milestone_003',
-            user_id: userId,
-            project_id: 'proj_003',
-            title: 'Podcast Setup Complete',
-            description: 'Equipment configured, guests booked, and first episode recorded',
-            deadline: '2025-03-01',
-            status: 'In Progress',
-            progress: 25,
-            order: 1,
-            created_at: '2025-01-10T00:00:00Z',
-            updated_at: '2025-01-18T16:00:00Z'
+            order: 1
           }
         ]);
 
       if (milestonesError) throw milestonesError;
-
-      // Insert sample time entries
-      const { error: timeEntriesError } = await supabase
-        .from('time_entries')
-        .insert([
-          {
-            id: 'time_001',
-            user_id: userId,
-            task_id: 'task_001',
-            project_id: 'proj_001',
-            description: 'Writing HTML basics script - covering semantic elements',
-            duration: 120,
-            date: '2025-01-20',
-            created_at: '2025-01-20T09:00:00Z',
-            updated_at: '2025-01-20T09:00:00Z'
-          },
-          {
-            id: 'time_002',
-            user_id: userId,
-            task_id: 'task_002',
-            project_id: 'proj_001',
-            description: 'Recording Episode 1 - first take with screen capture',
-            duration: 90,
-            date: '2025-01-20',
-            created_at: '2025-01-20T14:00:00Z',
-            updated_at: '2025-01-20T14:00:00Z'
-          },
-          {
-            id: 'time_003',
-            user_id: userId,
-            task_id: 'task_004',
-            project_id: 'proj_002',
-            description: 'Writing React performance optimization article',
-            duration: 150,
-            date: '2025-01-19',
-            created_at: '2025-01-19T10:30:00Z',
-            updated_at: '2025-01-19T10:30:00Z'
-          }
-        ]);
-
-      if (timeEntriesError) throw timeEntriesError;
 
       console.log('Demo data created successfully');
     } catch (error) {
@@ -505,7 +371,7 @@ export default function Login() {
           </div>
         </div>
 
-        {/* Enhanced Demo Account Section */}
+        {/* Demo Account Section */}
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 shadow-lg">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-blue-100 rounded-lg">
@@ -513,13 +379,13 @@ export default function Login() {
             </div>
             <div>
               <h3 className="text-lg font-semibold text-blue-900">Try the Demo</h3>
-              <p className="text-sm text-blue-700">Experience CreatorFlow with realistic sample data</p>
+              <p className="text-sm text-blue-700">Experience CreatorFlow with sample data</p>
             </div>
           </div>
           
           <div className="space-y-4">
             <p className="text-sm text-blue-700">
-              Explore all features with pre-loaded projects, tasks, milestones, and time tracking data. 
+              Explore all features with pre-loaded projects, tasks, and milestones. 
               Perfect for testing the platform before creating your own account.
             </p>
             
@@ -546,42 +412,23 @@ export default function Login() {
               )}
             </button>
             
-            <div className="p-3 bg-blue-100 rounded-lg">
-              <div className="text-xs text-blue-800 font-mono space-y-1">
-                <div className="flex justify-between">
-                  <span>Email:</span>
-                  <span className="font-semibold">demo@creatorflow.com</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Password:</span>
-                  <span className="font-semibold">demo123456</span>
-                </div>
-              </div>
-            </div>
-            
             <div className="grid grid-cols-2 gap-3 text-xs text-blue-600">
               <div className="flex items-center gap-1">
                 <CheckCircle className="w-3 h-3 text-blue-500" />
-                <span>5 Sample Projects</span>
+                <span>3 Sample Projects</span>
               </div>
               <div className="flex items-center gap-1">
                 <Target className="w-3 h-3 text-green-500" />
-                <span>14 Tasks</span>
+                <span>3 Tasks</span>
               </div>
               <div className="flex items-center gap-1">
                 <Target className="w-3 h-3 text-purple-500" />
-                <span>7 Milestones</span>
+                <span>2 Milestones</span>
               </div>
               <div className="flex items-center gap-1">
                 <BarChart3 className="w-3 h-3 text-orange-500" />
-                <span>Time Tracking</span>
+                <span>Analytics</span>
               </div>
-            </div>
-            
-            <div className="text-center pt-2 border-t border-blue-200">
-              <p className="text-xs text-blue-600">
-                ✨ Includes YouTube series, blog posts, podcasts, and course projects
-              </p>
             </div>
           </div>
         </div>

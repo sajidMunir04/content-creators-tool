@@ -11,6 +11,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { user, loading } = useAuth();
   const location = useLocation();
 
+  // Show loading spinner while checking authentication
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -19,10 +20,11 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
     );
   }
 
+  // If not authenticated, redirect to login
   if (!user) {
-    // Redirect to login page with return url
     return <Navigate to="/auth/login" state={{ from: location }} replace />;
   }
 
+  // User is authenticated, render the protected content
   return <>{children}</>;
 }

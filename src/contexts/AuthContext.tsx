@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session, AuthError } from '@supabase/supabase-js';
 import { supabase } from '../lib/supabase';
-import { useNavigate } from 'react-router-dom';
 
 interface Profile {
   id: string;
@@ -44,21 +43,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
     let mounted = true;
 
-    // Get initial session
-    const getInitialSession = async () => {
+    const initializeAuth = async () => {
       try {
+        // Get initial session
         const { data: { session }, error } = await supabase.auth.getSession();
         
         if (error) {
           console.error('Error getting session:', error);
-          if (mounted) {
-            setLoading(false);
-          }
-          return;
         }
 
         if (mounted) {
@@ -67,27 +63,29 @@ export function AuthProvider({ children }: AuthProviderProps) {
           
           if (session?.user) {
             await fetchProfile(session.user.id);
-          } else {
-            setLoading(false);
           }
+          
+          setInitialized(true);
+          setLoading(false);
         }
       } catch (error) {
-        console.error('Error in getInitialSession:', error);
+        console.error('Error initializing auth:', error);
         if (mounted) {
+          setInitialized(true);
           setLoading(false);
         }
       }
     };
 
-    getInitialSession();
+    initializeAuth();
 
     // Listen for auth changes
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log('Auth state changed:', event, session?.user?.email);
+      console.log('Auth state changed:', event);
       
-      if (mounted) {
+      if (mounted && initialized) {
         setSession(session);
         setUser(session?.user ?? null);
         
@@ -95,8 +93,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
           await fetchProfile(session.user.id);
         } else {
           setProfile(null);
-          setLoading(false);
         }
+        
+        setLoading(false);
       }
     });
 
@@ -108,7 +107,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const fetchProfile = async (userId: string) => {
     try {
-      setLoading(true);
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
@@ -119,9 +117,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
         console.error('Error fetching profile:', error);
         // If profile doesn't exist, create one
         if (error.code === 'PGRST116') {
-          const user = await supabase.auth.getUser();
-          if (user.data.user) {
-            await createProfile(user.data.user);
+          const { data: { user } } = await supabase.auth.getUser();
+          if (user) {
+            await createProfile(user);
           }
         }
       } else {
@@ -129,8 +127,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
       }
     } catch (error) {
       console.error('Error in fetchProfile:', error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -159,8 +155,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const signUp = async (email: string, password: string, fullName?: string) => {
     try {
-      setLoading(true);
-      
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
@@ -183,15 +177,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
       return { error: null };
     } catch (error) {
       return { error: error as AuthError };
-    } finally {
-      setLoading(false);
     }
   };
 
   const signIn = async (email: string, password: string) => {
     try {
-      setLoading(true);
-      
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -200,14 +190,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
       return { error };
     } catch (error) {
       return { error: error as AuthError };
-    } finally {
-      setLoading(false);
     }
   };
 
   const signOut = async () => {
     try {
-      setLoading(true);
       const { error } = await supabase.auth.signOut();
       
       if (!error) {
@@ -219,8 +206,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
       return { error };
     } catch (error) {
       return { error: error as AuthError };
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -265,7 +250,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     user,
     profile,
     session,
-    loading,
+    loading: loading || !initialized,
     signUp,
     signIn,
     signOut,
