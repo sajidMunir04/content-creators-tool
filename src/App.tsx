@@ -23,7 +23,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-gray-50">
           {/* Logo - Positioned at the far right with increased scale */}
-<div className="flex items-center ml-4 mt-10">
+<div className="flex items-center ml-4 mt-10 absolute">
   <img 
     src="/logo.png" 
     alt="CreatorFlow Logo" 
