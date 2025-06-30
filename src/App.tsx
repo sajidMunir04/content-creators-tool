@@ -26,7 +26,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
 {/* Logo - Fixed position in top right corner with high z-index */}
 <div className="fixed top-0 right-0 z-[1000] p-4">
   <img 
-    src=logo, 
+    src={logo}
     alt="CreatorFlow Logo" 
     className="h-14 w-auto sm:h-16 md:h-20 lg:h-24 xl:h-28 object-contain transition-all duration-200 hover:scale-110"
     onError={(e) => {
