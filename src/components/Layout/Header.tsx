@@ -130,7 +130,7 @@ export default function Header({ onCreateProject }: HeaderProps) {
           </div>
 
           {/* Logo - Positioned at the far right with increased scale */}
-          <div className="flex items-center ml-4">
+          <div className="flex items-center ml-4 mt-4">
             <img 
               src="/logo.png" 
               alt="CreatorFlow Logo" 
