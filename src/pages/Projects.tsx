@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Filter, Search, Grid, List } from 'lucide-react';
+import { Plus, Filter, Search, Grid, List, FolderOpen } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import { useNavigate } from 'react-router-dom';
 import ProjectCard from '../components/Projects/ProjectCard';
