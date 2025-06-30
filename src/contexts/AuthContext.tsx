@@ -139,6 +139,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           email: user.email!,
           full_name: user.user_metadata?.full_name || null,
           avatar_url: user.user_metadata?.avatar_url || null,
+          verified: true,
         })
         .select()
         .single();
