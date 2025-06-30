@@ -91,6 +91,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
         
         if (session?.user) {
           await fetchProfile(session.user.id);
+          
+          // Refresh the page on successful sign in
+          if (event === 'SIGNED_IN') {
+            // Small delay to ensure state is updated
+            setTimeout(() => {
+              window.location.reload();
+            }, 100);
+          }
         } else {
           setProfile(null);
         }
